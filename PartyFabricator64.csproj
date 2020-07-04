@@ -125,63 +125,63 @@
     <EmbeddedResource Include="assets\mp1\boards\7.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\0l.png">
+    <Resource Include="assets\mp1\characters\0l.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\0n.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\0n.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\0w.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\0w.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\1l.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\1l.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\1n.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\1n.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\1w.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\1w.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\2l.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\2l.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\2n.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\2n.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\2w.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\2w.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\3l.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\3l.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\3n.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\3n.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\3w.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\3w.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\4l.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\4l.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\4n.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\4n.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\4w.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\4w.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\5l.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\5l.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\5n.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\5n.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\characters\5w.png">
+    </Resource>
+    <Resource Include="assets\mp1\characters\5w.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp1\logo.png">
+    </Resource>
+    <Resource Include="assets\mp1\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
     <EmbeddedResource Include="assets\mp1\overlay.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -203,33 +203,33 @@
     <EmbeddedResource Include="assets\mp2\boards\5.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp2\characters\0.png">
+    <Resource Include="assets\mp2\characters\0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp2\characters\1.png">
+    </Resource>
+    <Resource Include="assets\mp2\characters\1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp2\characters\2.png">
+    </Resource>
+    <Resource Include="assets\mp2\characters\2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp2\characters\3.png">
+    </Resource>
+    <Resource Include="assets\mp2\characters\3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp2\characters\4.png">
+    </Resource>
+    <Resource Include="assets\mp2\characters\4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp2\characters\5.png">
+    </Resource>
+    <Resource Include="assets\mp2\characters\5.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp2\logo.png">
+    </Resource>
+    <Resource Include="assets\mp2\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
     <EmbeddedResource Include="assets\mp2\overlay.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp3\logo.png">
+    <Resource Include="assets\mp3\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
     <EmbeddedResource Include="assets\type\0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -307,32 +307,32 @@
     <EmbeddedResource Include="assets\mp3\boards\5.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp3\characters\1.png">
+    <Resource Include="assets\mp3\characters\1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp3\characters\2.png">
+    </Resource>
+    <Resource Include="assets\mp3\characters\2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp3\characters\3.png">
+    </Resource>
+    <Resource Include="assets\mp3\characters\3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp3\characters\4.png">
+    </Resource>
+    <Resource Include="assets\mp3\characters\4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp3\characters\5.png">
+    </Resource>
+    <Resource Include="assets\mp3\characters\5.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp3\characters\6.png">
+    </Resource>
+    <Resource Include="assets\mp3\characters\6.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="assets\mp3\characters\7.png">
+    </Resource>
+    <Resource Include="assets\mp3\characters\7.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="assets\mp3\characters\0.png">
+    <Resource Include="assets\mp3\characters\0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

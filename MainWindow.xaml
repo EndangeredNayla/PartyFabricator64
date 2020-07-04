@@ -30,13 +30,13 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="0" Source="./assets/mp1/logo.png" Margin="5"></Image>
+                <Image Grid.Column="0" Margin="5" Source="assets/mp1/logo.png"/>
                 <RadioButton Grid.Column="0" x:Name="radMP1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Checked="radMP1_Checked"/>
 
-                <Image Grid.Column="1" Source="./assets/mp2/logo.png" Margin="5"></Image>
+                <Image Grid.Column="1" Margin="5" Source="assets/mp2/logo.png"/>
                 <RadioButton Grid.Column="1" x:Name="radMP2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Checked="radMP2_Checked"/>
 
-                <Image Grid.Column="2" Source="./assets/mp3/logo.png" Margin="5"></Image>
+                <Image Grid.Column="2" Source="assets/mp3/logo.png" Margin="5"></Image>
                 <RadioButton Grid.Column="2" x:Name="radMP3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Checked="radMP3_Checked" IsEnabled="False"></RadioButton>
             </Grid>
             
@@ -78,7 +78,7 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image x:Name="imgFirst" Source="./assets/mp1/characters/0w.png" Margin="5"/>
+                    <Image x:Name="imgFirst" Source="assets/mp1/characters/0w.png" Margin="5"/>
 
                     <StackPanel Grid.Column="1">
                         <Label Content="Character" HorizontalAlignment="Center"/>
