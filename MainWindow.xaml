@@ -5,212 +5,201 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PartyFabricator64"
         mc:Ignorable="d"
-        Title="PartyFabricator64" Height="450" Width="800">
+        Title="PartyFabricator64" Height="450" Width="400" ResizeMode="NoResize">
+    <!-- The left half of the window with its three rows-->
     <Grid>
-        <!-- The main grid that takes up the entire window -->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
 
-        <!-- The left half of the window with its three rows-->
+        <!-- Top row, game selection -->
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0" Margin="5" Source="assets/mp1/logo.png"/>
+            <RadioButton Grid.Column="0" x:Name="radMP1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Checked="radMP1_Checked"/>
+
+            <Image Grid.Column="1" Margin="5" Source="assets/mp2/logo.png"/>
+            <RadioButton Grid.Column="1" x:Name="radMP2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Checked="radMP2_Checked"/>
+
+            <Image Grid.Column="2" Source="assets/mp3/logo.png" Margin="5"></Image>
+            <RadioButton Grid.Column="2" x:Name="radMP3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Checked="radMP3_Checked"/>
+        </Grid>
+
+        <!-- Second row, board selection -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Binding Width, ElementName=lblBoard}"/>
+                <ColumnDefinition Width="{Binding Width, ElementName=comboBox}"/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="lblBoard" Content="Select Board:" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox x:Name="cbxBoard" Grid.Column="1" Height="22" VerticalAlignment="Center" Margin="5" SelectionChanged="cbxBoard_SelectionChanged">
+                <ComboBoxItem Content="DK's Jungle Adventure"/>
+                <ComboBoxItem Content="Peach's Birthday Cake"/>
+                <ComboBoxItem Content="Yoshi's Tropical Island"/>
+                <ComboBoxItem Content="Wario's Battle Canyon"/>
+                <ComboBoxItem Content="Luigi's Engine Room"/>
+                <ComboBoxItem Content="Mario's Rainbow Castle"/>
+                <ComboBoxItem Content="Bowser's Magma Mountain"/>
+                <ComboBoxItem Content="Eternal Star"/>
+            </ComboBox>
+        </Grid>
+
+        <!-- Bottom row, character and score selection -->
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <!-- Top row, game selection -->
+            <!-- First place information -->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="0" Margin="5" Source="assets/mp1/logo.png"/>
-                <RadioButton Grid.Column="0" x:Name="radMP1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Checked="radMP1_Checked"/>
+                <Image x:Name="imgFirst" Source="assets/mp1/characters/0w.png" Margin="5"/>
 
-                <Image Grid.Column="1" Margin="5" Source="assets/mp2/logo.png"/>
-                <RadioButton Grid.Column="1" x:Name="radMP2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Checked="radMP2_Checked"/>
+                <StackPanel Grid.Column="1">
+                    <Label Content="Character" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="cbxP1" Margin="5" SelectionChanged="updateChar">
+                        <ComboBoxItem Content="Mario"/>
+                        <ComboBoxItem Content="Luigi"/>
+                        <ComboBoxItem Content="Peach"/>
+                        <ComboBoxItem Content="Yoshi"/>
+                        <ComboBoxItem Content="Wario"/>
+                        <ComboBoxItem Content="DK"/>
+                    </ComboBox>
+                </StackPanel>
 
-                <Image Grid.Column="2" Source="assets/mp3/logo.png" Margin="5"></Image>
-                <RadioButton Grid.Column="2" x:Name="radMP3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Checked="radMP3_Checked" IsEnabled="False"></RadioButton>
+                <StackPanel Grid.Column="2">
+                    <Label Content="Star Count" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtSFirst"  Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="2"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="3">
+                    <Label Content="Coin Count" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtCFirst" Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="3"/>
+                </StackPanel>
             </Grid>
-            
-            <!-- Second row, board selection -->
+
+            <!-- Second place information -->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="{Binding Width, ElementName=lblBoard}"/>
-                    <ColumnDefinition Width="{Binding Width, ElementName=comboBox}"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label x:Name="lblBoard" Content="Select Board:" Margin="5" VerticalAlignment="Center"/>
-                <ComboBox x:Name="cbxBoard" Grid.Column="1" Height="22" VerticalAlignment="Center" Margin="5" SelectionChanged="cbxBoard_SelectionChanged">
-                    <ComboBoxItem Content="DK's Jungle Adventure"/>
-                    <ComboBoxItem Content="Peach's Birthday Cake"/>
-                    <ComboBoxItem Content="Yoshi's Tropical Island"/>
-                    <ComboBoxItem Content="Wario's Battle Canyon"/>
-                    <ComboBoxItem Content="Luigi's Engine Room"/>
-                    <ComboBoxItem Content="Mario's Rainbow Castle"/>
-                    <ComboBoxItem Content="Bowser's Magma Mountain"/>
-                    <ComboBoxItem Content="Eternal Star"/>
-                </ComboBox>
+                <Image x:Name="imgSecond" Source="./assets/mp1/characters/1n.png" Margin="5"/>
+
+                <StackPanel Grid.Column="1">
+                    <Label Content="Character" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="cbxP2" Margin="5" SelectionChanged="updateChar">
+                        <ComboBoxItem Content="Mario"/>
+                        <ComboBoxItem Content="Luigi"/>
+                        <ComboBoxItem Content="Peach"/>
+                        <ComboBoxItem Content="Yoshi"/>
+                        <ComboBoxItem Content="Wario"/>
+                        <ComboBoxItem Content="DK"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <Label Content="Star Count" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtSSecond"  Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="2"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="3">
+                    <Label Content="Coin Count" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtCSecond" Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="5"/>
+                </StackPanel>
             </Grid>
-            
-            <!-- Bottom row, character and score selection -->
+
+            <!-- Third place information -->
             <Grid Grid.Row="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                
-                <!-- First place information -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
-                    <Image x:Name="imgFirst" Source="assets/mp1/characters/0w.png" Margin="5"/>
+                <Image x:Name="imgThird" Source="./assets/mp1/characters/2n.png" Margin="5"/>
 
-                    <StackPanel Grid.Column="1">
-                        <Label Content="Character" HorizontalAlignment="Center"/>
-                        <ComboBox x:Name="cbxP1" Margin="5" SelectionChanged="updateChar">
-                            <ComboBoxItem Content="Mario"/>
-                            <ComboBoxItem Content="Luigi"/>
-                            <ComboBoxItem Content="Peach"/>
-                            <ComboBoxItem Content="Yoshi"/>
-                            <ComboBoxItem Content="Wario"/>
-                            <ComboBoxItem Content="DK"/>
-                        </ComboBox>
-                    </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Label Content="Character" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="cbxP3" Margin="5" SelectionChanged="updateChar">
+                        <ComboBoxItem Content="Mario"/>
+                        <ComboBoxItem Content="Luigi"/>
+                        <ComboBoxItem Content="Peach"/>
+                        <ComboBoxItem Content="Yoshi"/>
+                        <ComboBoxItem Content="Wario"/>
+                        <ComboBoxItem Content="DK"/>
+                    </ComboBox>
+                </StackPanel>
 
-                    <StackPanel Grid.Column="2">
-                        <Label Content="Star Count" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="txtSFirst"  Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="2"/>
-                    </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <Label Content="Star Count" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtSThird"  Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="2"/>
+                </StackPanel>
 
-                    <StackPanel Grid.Column="3">
-                        <Label Content="Coin Count" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="txtCFirst" Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="3"/>
-                    </StackPanel>
-                </Grid>
-                
-                <!-- Second place information -->
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Image x:Name="imgSecond" Source="./assets/mp1/characters/1n.png" Margin="5"/>
-
-                    <StackPanel Grid.Column="1">
-                        <Label Content="Character" HorizontalAlignment="Center"/>
-                        <ComboBox x:Name="cbxP2" Margin="5" SelectionChanged="updateChar">
-                            <ComboBoxItem Content="Mario"/>
-                            <ComboBoxItem Content="Luigi"/>
-                            <ComboBoxItem Content="Peach"/>
-                            <ComboBoxItem Content="Yoshi"/>
-                            <ComboBoxItem Content="Wario"/>
-                            <ComboBoxItem Content="DK"/>
-                        </ComboBox>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="2">
-                        <Label Content="Star Count" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="txtSSecond"  Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="2"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="3">
-                        <Label Content="Coin Count" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="txtCSecond" Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="5"/>
-                    </StackPanel>
-                </Grid>
-
-                <!-- Third place information -->
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Image x:Name="imgThird" Source="./assets/mp1/characters/2n.png" Margin="5"/>
-
-                    <StackPanel Grid.Column="1">
-                        <Label Content="Character" HorizontalAlignment="Center"/>
-                        <ComboBox x:Name="cbxP3" Margin="5" SelectionChanged="updateChar">
-                            <ComboBoxItem Content="Mario"/>
-                            <ComboBoxItem Content="Luigi"/>
-                            <ComboBoxItem Content="Peach"/>
-                            <ComboBoxItem Content="Yoshi"/>
-                            <ComboBoxItem Content="Wario"/>
-                            <ComboBoxItem Content="DK"/>
-                        </ComboBox>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="2">
-                        <Label Content="Star Count" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="txtSThird"  Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="2"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="3">
-                        <Label Content="Coin Count" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="txtCThird" Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="3"/>
-                    </StackPanel>
-                </Grid>
-                
-                <!-- Fourth place information -->
-                <Grid Grid.Row="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Image x:Name="imgFourth" Source="./assets/mp1/characters/3l.png" Margin="5"/>
-
-                    <StackPanel Grid.Column="1">
-                        <Label Content="Character" HorizontalAlignment="Center"/>
-                        <ComboBox x:Name="cbxP4" Margin="5" SelectionChanged="updateChar">
-                            <ComboBoxItem Content="Mario"/>
-                            <ComboBoxItem Content="Luigi"/>
-                            <ComboBoxItem Content="Peach"/>
-                            <ComboBoxItem Content="Yoshi"/>
-                            <ComboBoxItem Content="Wario"/>
-                            <ComboBoxItem Content="DK"/>
-                        </ComboBox>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="2">
-                        <Label Content="Star Count" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="txtSFourth"  Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="2"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="3">
-                        <Label Content="Coin Count" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="txtCFourth" Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="3"/>
-                    </StackPanel>
-                </Grid>
+                <StackPanel Grid.Column="3">
+                    <Label Content="Coin Count" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtCThird" Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="3"/>
+                </StackPanel>
             </Grid>
 
-            <Label Grid.Row="3" x:Name="output" Content="Image automatically saves in the executable directory." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <!-- Fourth place information -->
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
+                <Image x:Name="imgFourth" Source="./assets/mp1/characters/3l.png" Margin="5"/>
+
+                <StackPanel Grid.Column="1">
+                    <Label Content="Character" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="cbxP4" Margin="5" SelectionChanged="updateChar">
+                        <ComboBoxItem Content="Mario"/>
+                        <ComboBoxItem Content="Luigi"/>
+                        <ComboBoxItem Content="Peach"/>
+                        <ComboBoxItem Content="Yoshi"/>
+                        <ComboBoxItem Content="Wario"/>
+                        <ComboBoxItem Content="DK"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <Label Content="Star Count" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtSFourth"  Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="2"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="3">
+                    <Label Content="Coin Count" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtCFourth" Height="22" Margin="25,5" TextAlignment="Center" TextChanged="balanceUpdate" MaxLength="3"/>
+                </StackPanel>
+            </Grid>
         </Grid>
 
-        <Image x:Name="imgResult" Source="./placeholder.png" Grid.Column="1" Margin="10"/>
+        <Label Grid.Row="3" x:Name="output" Content="Image automatically saves in the executable directory." HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
     </Grid>
 </Window>

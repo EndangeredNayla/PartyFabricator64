@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace PartyFabricator64
 {
@@ -31,17 +32,17 @@ namespace PartyFabricator64
 
             if (mp == 1) //Decides whether or not to use the Mario Party 1 exclusive winning / losing portraits.
             {
-                first = Image.FromFile($@"A:/programming/PartyFabricator64/assets/mp{mp}/characters/{p1.getPlayer()}w.png");
-                second = Image.FromFile($@"A:/programming/PartyFabricator64/assets/mp{mp}/characters/{p2.getPlayer()}n.png");
-                third = Image.FromFile($@"A:/programming/PartyFabricator64/assets/mp{mp}/characters/{p3.getPlayer()}n.png");
-                fourth = Image.FromFile($@"A:/programming/PartyFabricator64/assets/mp{mp}/characters/{p4.getPlayer()}l.png");
+                first = Image.FromFile($@"assets/mp{mp}/characters/{p1.getPlayer()}w.png");
+                second = Image.FromFile($@"assets/mp{mp}/characters/{p2.getPlayer()}n.png");
+                third = Image.FromFile($@"assets/mp{mp}/characters/{p3.getPlayer()}n.png");
+                fourth = Image.FromFile($@"assets/mp{mp}/characters/{p4.getPlayer()}l.png");
             }
             else
             {
-                first = Image.FromFile($@"A:/programming/PartyFabricator64/assets/mp{mp}/characters/{p1.getPlayer()}.png");
-                second = Image.FromFile($@"A:/programming/PartyFabricator64/assets/mp{mp}/characters/{p2.getPlayer()}.png");
-                third = Image.FromFile($@"A:/programming/PartyFabricator64/assets/mp{mp}/characters/{p3.getPlayer()}.png");
-                fourth = Image.FromFile($@"A:/programming/PartyFabricator64/assets/mp{mp}/characters/{p4.getPlayer()}.png");
+                first = Image.FromFile($@"assets/mp{mp}/characters/{p1.getPlayer()}.png");
+                second = Image.FromFile($@"assets/mp{mp}/characters/{p2.getPlayer()}.png");
+                third = Image.FromFile($@"assets/mp{mp}/characters/{p3.getPlayer()}.png");
+                fourth = Image.FromFile($@"assets/mp{mp}/characters/{p4.getPlayer()}.png");
             }
 
             Image result = new Bitmap(319, 237); //Initializes final results image.
@@ -49,8 +50,8 @@ namespace PartyFabricator64
             //IMAGE COMPOSITING FOR MARIO PARTY 1 AND 2
             if (mp == 1 || mp == 2) // These games have similar enough leaderboards to combine them into 1 section.
             {
-                Image bg = Image.FromFile($@"A:/programming/PartyFabricator64/assets/mp{mp}/boards/{board}.png");
-                Image overlay = Image.FromFile($@"A:/programming/PartyFabricator64/assets/mp{mp}/overlay.png");
+                Image bg = Image.FromFile($@"assets/mp{mp}/boards/{board}.png");
+                Image overlay = Image.FromFile($@"assets/mp{mp}/overlay.png");
 
                 using (Graphics gr = Graphics.FromImage(result))
                 {
@@ -62,34 +63,78 @@ namespace PartyFabricator64
                     gr.DrawImage(third, 94, 133);
                     gr.DrawImage(fourth, 94, 173);
 
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getStarChar(0, p1.getStars())}.png"), 166, 65);
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getStarChar(1, p1.getStars())}.png"), 181, 65);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(0, p1.getStars(), false)}.png"), 166, 65);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(1, p1.getStars(), false)}.png"), 181, 65);
 
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getStarChar(0, p2.getStars())}.png"), 166, 105);
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getStarChar(1, p2.getStars())}.png"), 181, 105);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(0, p2.getStars(), false)}.png"), 166, 105);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(1, p2.getStars(), false)}.png"), 181, 105);
 
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getStarChar(0, p3.getStars())}.png"), 166, 145);
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getStarChar(1, p3.getStars())}.png"), 181, 145);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(0, p3.getStars(), false)}.png"), 166, 145);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(1, p3.getStars(), false)}.png"), 181, 145);
 
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getStarChar(0, p4.getStars())}.png"), 166, 185);
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getStarChar(1, p4.getStars())}.png"), 181, 185);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(0, p4.getStars(), false)}.png"), 166, 185);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(1, p4.getStars(), false)}.png"), 181, 185);
 
 
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getCoinChar(0, p1.getCoins())}.png"), getCoinPos(0, p1.getCoins()), 65);
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getCoinChar(1, p1.getCoins())}.png"), getCoinPos(1, p1.getCoins()), 65);
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getCoinChar(2, p1.getCoins())}.png"), getCoinPos(2, p1.getCoins()), 65);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(0, p1.getCoins(), false)}.png"), getCoinPos(0, p1.getCoins()), 65);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(1, p1.getCoins(), false)}.png"), getCoinPos(1, p1.getCoins()), 65);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(2, p1.getCoins(), false)}.png"), getCoinPos(2, p1.getCoins()), 65);
 
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getCoinChar(0, p2.getCoins())}.png"), getCoinPos(0, p2.getCoins()), 105);
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getCoinChar(1, p2.getCoins())}.png"), getCoinPos(1, p2.getCoins()), 105);
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getCoinChar(2, p2.getCoins())}.png"), getCoinPos(2, p2.getCoins()), 105);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(0, p2.getCoins(), false)}.png"), getCoinPos(0, p2.getCoins()), 105);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(1, p2.getCoins(), false)}.png"), getCoinPos(1, p2.getCoins()), 105);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(2, p2.getCoins(), false)}.png"), getCoinPos(2, p2.getCoins()), 105);
 
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getCoinChar(0, p3.getCoins())}.png"), getCoinPos(0, p3.getCoins()), 145);
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getCoinChar(1, p3.getCoins())}.png"), getCoinPos(1, p3.getCoins()), 145);
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getCoinChar(2, p3.getCoins())}.png"), getCoinPos(2, p3.getCoins()), 145);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(0, p3.getCoins(), false)}.png"), getCoinPos(0, p3.getCoins()), 145);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(1, p3.getCoins(), false)}.png"), getCoinPos(1, p3.getCoins()), 145);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(2, p3.getCoins(), false)}.png"), getCoinPos(2, p3.getCoins()), 145);
 
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getCoinChar(0, p4.getCoins())}.png"), getCoinPos(0, p4.getCoins()), 185);
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getCoinChar(1, p4.getCoins())}.png"), getCoinPos(1, p4.getCoins()), 185);
-                    gr.DrawImage(Image.FromFile($@"A:/programming/PartyFabricator64/assets/type/{getCoinChar(2, p4.getCoins())}.png"), getCoinPos(2, p4.getCoins()), 185);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(0, p4.getCoins(), false)}.png"), getCoinPos(0, p4.getCoins()), 185);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(1, p4.getCoins(), false)}.png"), getCoinPos(1, p4.getCoins()), 185);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(2, p4.getCoins(), false)}.png"), getCoinPos(2, p4.getCoins()), 185);
+                }
+            } else { //If the Mario Party game specified isn't 1 or 2...
+
+                Image bg = Image.FromFile($@"assets/mp{mp}/background.png");
+                Image overlay = Image.FromFile($@"assets/mp{mp}/boards/{board}.png");
+
+                using (Graphics gr = Graphics.FromImage(result))
+                {
+                    gr.DrawImage(bg, 0, 0, bg.Width, bg.Height);
+                    gr.DrawImage(overlay, 0, 0, overlay.Width, overlay.Height);
+
+                    gr.DrawImage(first, 95, 53);
+                    gr.DrawImage(second, 95, 93);
+                    gr.DrawImage(third, 95, 133);
+                    gr.DrawImage(fourth, 95, 173);
+
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(0, p1.getStars(), true)}.png"), 171, 64);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(1, p1.getStars(), true)}.png"), 187, 64);
+
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(0, p2.getStars(), true)}.png"), 171, 104);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(1, p2.getStars(), true)}.png"), 187, 104);
+
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(0, p3.getStars(), true)}.png"), 171, 144);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(1, p3.getStars(), true)}.png"), 187, 144);
+
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(0, p4.getStars(), true)}.png"), 171, 184);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getStarChar(1, p4.getStars(), true)}.png"), 187, 184);
+
+
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(0, p1.getCoins(), true)}.png"), getCoinPos3(0, p1.getCoins()), 64);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(1, p1.getCoins(), true)}.png"), getCoinPos3(1, p1.getCoins()), 64);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(2, p1.getCoins(), true)}.png"), getCoinPos3(2, p1.getCoins()), 64);
+
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(0, p2.getCoins(), true)}.png"), getCoinPos3(0, p2.getCoins()), 104);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(1, p2.getCoins(), true)}.png"), getCoinPos3(1, p2.getCoins()), 104);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(2, p2.getCoins(), true)}.png"), getCoinPos3(2, p2.getCoins()), 104);
+
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(0, p3.getCoins(), true)}.png"), getCoinPos3(0, p3.getCoins()), 144);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(1, p3.getCoins(), true)}.png"), getCoinPos3(1, p3.getCoins()), 144);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(2, p3.getCoins(), true)}.png"), getCoinPos3(2, p3.getCoins()), 144);
+
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(0, p4.getCoins(), true)}.png"), getCoinPos3(0, p4.getCoins()), 184);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(1, p4.getCoins(), true)}.png"), getCoinPos3(1, p4.getCoins()), 184);
+                    gr.DrawImage(Image.FromFile($@"assets/type/{getCoinChar(2, p4.getCoins(), true)}.png"), getCoinPos3(2, p4.getCoins()), 184);
                 }
             }
             return result;
@@ -111,7 +156,19 @@ namespace PartyFabricator64
             if (pl == 1) return 257;
 
             if (amt < 10) return 265; //In cases the total amount is less than 10, the x-coordinate is slightly offset.
-            else return 273;
+            else return 272;
+        }
+
+        /*
+         * Does the same thing as getCoinPos() but is for MP3. I didn't account for the fact that it would work differently.
+         */
+        private static int getCoinPos3(int pl, int amt)
+        {
+            if (pl == 0) return 245;
+            if (pl == 1) return 261;
+
+            if (amt < 10) return 261;
+            else return 277;
         }
 
         /*
@@ -119,7 +176,7 @@ namespace PartyFabricator64
          * 'pl' => Place value, should be 0-2 and account for numbers 0-999.
          * 'amt' => Amount, should be the total number of coins the player has.
          */
-        private static string getCoinChar(int pl, int amt)
+        private static string getCoinChar(int pl, int amt, bool mp3)
         {
             string chara;
 
@@ -128,7 +185,10 @@ namespace PartyFabricator64
             if (pl == 0)
             {
                 if (Math.Truncate((Double)amt / 100) != 0) chara = Math.Truncate((Double)amt / 100).ToString();
-                else chara = "x";
+                else {
+                    if (mp3) chara = "xs";
+                    else chara = "x";
+                }
             }
             else if (pl == 1)
             {
@@ -146,7 +206,7 @@ namespace PartyFabricator64
          *  'pl' => Place value, should be 0-1 and account for numbers 0-99.
          *  'amt' => Amount, should be the total number of stars the player has.
          */
-        private static string getStarChar(int pl, int amt)
+        private static string getStarChar(int pl, int amt, bool mp3)
         {
             string chara;
 
@@ -155,7 +215,10 @@ namespace PartyFabricator64
             if (pl == 0)
             {
                 if (Math.Truncate((Double)amt / 10) != 0) chara = Math.Truncate((Double)amt / 10).ToString();
-                else chara = "x";
+                else {
+                    if (mp3) chara = "xs";
+                    else chara = "x";
+                }
             }
             else if (pl == 1)
             {
