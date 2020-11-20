@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PartyFabricator64"
         mc:Ignorable="d"
-        Title="PartyFabricator64" Height="450" Width="400" ResizeMode="NoResize">
+        Title="PartyFabricator64" Height="450" Width="400" ResizeMode="CanMinimize">
     <!-- The left half of the window with its three rows-->
     <Grid>
         <Grid.RowDefinitions>
@@ -29,9 +29,9 @@
             <Image Grid.Column="1" Margin="5" Source="assets/mp2/logo.png"/>
             <RadioButton Grid.Column="1" x:Name="radMP2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Checked="radMP2_Checked"/>
 
-            <Image Grid.Column="2" Source="assets/mp3/logo.png" Margin="5"></Image>
+            <Image Grid.Column="2" Source="assets/mp3/logo.png" Margin="5"/>
             <RadioButton Grid.Column="2" x:Name="radMP3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" Checked="radMP3_Checked"/>
-        </Grid>
+		</Grid>
 
         <!-- Second row, board selection -->
         <Grid Grid.Row="1">

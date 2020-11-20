@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PartyFabricator64.Properties;
+using System;
+using System.Configuration;
+using System.Security.Policy;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PartyFabricator64
 {
     public partial class MainWindow : Window
     {
+        Settings config = Properties.Settings.Default;
+        bool ready = false;
+        bool switching = false;
         int mp = 1;
-        bool init = false;
         Player p1 = new Player(0);
         Player p2 = new Player(1);
         Player p3 = new Player(2);
@@ -31,26 +24,45 @@ namespace PartyFabricator64
         {
             InitializeComponent();
 
-            radMP1.IsChecked = true;
+            switch ((int)config["game"])
+            {
+                case 1:
+                    radMP1.IsChecked = true;
+                    mp = 1;
+                    break;
+                case 2:
+                    radMP2.IsChecked = true;
+                    mp = 2;
+                    break;
+                case 3:
+                    radMP3.IsChecked = true;
+                    break;
+                default:
+                    radMP1.IsChecked = true;
+                    mp = 3;
+                    break;
+            }
 
-            cbxBoard.SelectedIndex = 0;
+            cbxBoard.SelectedIndex = (int)config["board"];
 
-            cbxP1.SelectedIndex = 0;
-            cbxP2.SelectedIndex = 1;
-            cbxP3.SelectedIndex = 2;
-            cbxP4.SelectedIndex = 3;
+            cbxP1.SelectedIndex = (int)config["p1p"];
+            cbxP2.SelectedIndex = (int)config["p2p"];
+            cbxP3.SelectedIndex = (int)config["p3p"];
+            cbxP4.SelectedIndex = (int)config["p4p"];
 
-            txtSFirst.Text = "0";
-            txtSSecond.Text = "0";
-            txtSThird.Text = "0";
-            txtSFourth.Text = "0";
+            txtSFirst.Text = (string)config["p1s"];
+            txtSSecond.Text = (string)config["p2s"];
+            txtSThird.Text = (string)config["p3s"];
+            txtSFourth.Text = (string)config["p4s"];
 
-            txtCFirst.Text = "0";
-            txtCSecond.Text = "0";
-            txtCThird.Text = "0";
-            txtCFourth.Text = "0";
+            txtCFirst.Text = (string)config["p1c"];
+            txtCSecond.Text = (string)config["p2c"];
+            txtCThird.Text = (string)config["p3c"];
+            txtCFourth.Text = (string)config["p4c"];
 
-            init = true;
+            ready = true;
+
+            update();
         }
 
 
@@ -60,16 +72,13 @@ namespace PartyFabricator64
          */
         private void updateChar(object sender, SelectionChangedEventArgs e)
         {
-            init = false;
             p1.setPlayer(cbxP1.SelectedIndex, mp == 3);
             p2.setPlayer(cbxP2.SelectedIndex, mp == 3);
             p3.setPlayer(cbxP3.SelectedIndex, mp == 3);
             p4.setPlayer(cbxP4.SelectedIndex, mp == 3);
-            updateImages();
-            init = true;
-            if (init) ImageBuilder.saveFile(ImageBuilder.makeResult(mp, cbxBoard.SelectedIndex, p1, p2, p3, p4));           
-        }
 
+            update();
+        }
 
         /*
          * Runs whenever the game radio button at the top is changed to MP1.
@@ -77,11 +86,11 @@ namespace PartyFabricator64
          */
         private void radMP1_Checked(object sender, RoutedEventArgs e)
         {
-            init = false;
             mp = 1;
+            switching = true;
 
-            for (int i = cbxBoard.Items.Count; i > 0; i--) cbxBoard.Items.RemoveAt(i - 1);
-            cbxBoard.Items.Add("DK's Jungle Adventure");
+            for (int i = cbxBoard.Items.Count; i > 1; i--) cbxBoard.Items.RemoveAt(i - 1);
+            cbxBoard.Items[0] = "DK's Jungle Adventure";
             cbxBoard.Items.Add("Peach's Birthday Cake");
             cbxBoard.Items.Add("Yoshi's Tropical Island");
             cbxBoard.Items.Add("Wario's Battle Canyon");
@@ -127,10 +136,8 @@ namespace PartyFabricator64
                 }
             }
 
-            init = true;
-            updateImages();
-
-            if (init) ImageBuilder.saveFile(ImageBuilder.makeResult(mp, cbxBoard.SelectedIndex, p1, p2, p3, p4));
+            switching = false;
+            update();
         }
 
 
@@ -140,11 +147,11 @@ namespace PartyFabricator64
          */
         private void radMP2_Checked(object sender, RoutedEventArgs e)
         {
-            init = false;
             mp = 2;
+            switching = true;
 
-            for (int i = cbxBoard.Items.Count; i > 0; i--) cbxBoard.Items.RemoveAt(i - 1);
-            cbxBoard.Items.Add("Pirate Land");
+            for (int i = cbxBoard.Items.Count; i > 1; i--) cbxBoard.Items.RemoveAt(i - 1);
+            cbxBoard.Items[0] = "Pirate Land";
             cbxBoard.Items.Add("Western Land");
             cbxBoard.Items.Add("Space Land");
             cbxBoard.Items.Add("Mystery Land");
@@ -187,9 +194,9 @@ namespace PartyFabricator64
                     cbxP4.Items.RemoveAt(i - 1);
                 }
             }
-            init = true;
-            updateImages();
-            if (init) ImageBuilder.saveFile(ImageBuilder.makeResult(mp, cbxBoard.SelectedIndex, p1, p2, p3, p4));
+
+            switching = false;
+            update();
         }
 
 
@@ -199,11 +206,11 @@ namespace PartyFabricator64
          */
         private void radMP3_Checked(object sender, RoutedEventArgs e)
         {
-            init = false;
             mp = 3;
+            switching = true;
 
-            for (int i = cbxBoard.Items.Count; i > 0; i--) cbxBoard.Items.RemoveAt(i - 1);
-            cbxBoard.Items.Add("Chilly Waters");
+            for (int i = cbxBoard.Items.Count; i > 1; i--) cbxBoard.Items.RemoveAt(i - 1);
+            cbxBoard.Items[0] = "Chilly Waters";
             cbxBoard.Items.Add("Deep Bloober Sea");
             cbxBoard.Items.Add("Spiny Desert");
             cbxBoard.Items.Add("Woody Woods");
@@ -220,11 +227,9 @@ namespace PartyFabricator64
             cbxP3.Items.Add("Waluigi");
             cbxP4.Items.Add("Daisy");
             cbxP4.Items.Add("Waluigi");
-            init = true;
 
-            updateImages();
-
-            if (init) ImageBuilder.saveFile(ImageBuilder.makeResult(mp, cbxBoard.SelectedIndex, p1, p2, p3, p4));
+            switching = false;
+            update();
         }
 
 
@@ -244,7 +249,7 @@ namespace PartyFabricator64
             p3.setCoins(parseCoins(txtCThird.Text));
             p4.setCoins(parseCoins(txtCFourth.Text));
 
-            if (init) ImageBuilder.saveFile(ImageBuilder.makeResult(mp, cbxBoard.SelectedIndex, p1, p2, p3, p4));
+            update(true);
         }
 
         /*
@@ -253,7 +258,7 @@ namespace PartyFabricator64
          */
         private void cbxBoard_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (init) ImageBuilder.saveFile(ImageBuilder.makeResult(mp, cbxBoard.SelectedIndex, p1, p2, p3, p4));
+            update(true);
         }
 
         /*
@@ -286,27 +291,64 @@ namespace PartyFabricator64
         }
 
         /*
-         * Updates the previews for the character portrait images in the application window. Doesn't affect the actual results image whatsoever.
+         * Updates the images in software and writes to the results.png file.
          */
-        private void updateImages()
+        private void update()
         {
-            if (init)
+            update(false);
+        }
+
+        private void update(bool skipUi)
+        {
+            if (!ready) return;
+            if (switching) return;
+            if (!skipUi)
             {
-                if (mp == 1)
-                {
-                    imgFirst.Source = new BitmapImage(new Uri($@"assets/mp{mp}/characters/{p1.getPlayer()}w.png", UriKind.Relative));
-                    imgSecond.Source = new BitmapImage(new Uri($@"assets/mp{mp}/characters/{p2.getPlayer()}n.png", UriKind.Relative));
-                    imgThird.Source = new BitmapImage(new Uri($@"assets/mp{mp}/characters/{p3.getPlayer()}n.png", UriKind.Relative));
-                    imgFourth.Source = new BitmapImage(new Uri($@"assets/mp{mp}/characters/{p4.getPlayer()}l.png", UriKind.Relative));
-                }
-                else
+                if (mp != 1)
                 {
                     imgFirst.Source = new BitmapImage(new Uri($@"assets/mp{mp}/characters/{p1.getPlayer()}.png", UriKind.Relative));
                     imgSecond.Source = new BitmapImage(new Uri($@"assets/mp{mp}/characters/{p2.getPlayer()}.png", UriKind.Relative));
                     imgThird.Source = new BitmapImage(new Uri($@"assets/mp{mp}/characters/{p3.getPlayer()}.png", UriKind.Relative));
                     imgFourth.Source = new BitmapImage(new Uri($@"assets/mp{mp}/characters/{p4.getPlayer()}.png", UriKind.Relative));
+                } else {
+                    imgFirst.Source = new BitmapImage(new Uri($@"assets/mp{mp}/characters/{p1.getPlayer()}w.png", UriKind.Relative));
+                    imgSecond.Source = new BitmapImage(new Uri($@"assets/mp{mp}/characters/{p2.getPlayer()}n.png", UriKind.Relative));
+                    imgThird.Source = new BitmapImage(new Uri($@"assets/mp{mp}/characters/{p3.getPlayer()}n.png", UriKind.Relative));
+                    imgFourth.Source = new BitmapImage(new Uri($@"assets/mp{mp}/characters/{p4.getPlayer()}l.png", UriKind.Relative));
                 }
             }
+            Player[] match = new Player[4];
+            match[0] = p1;
+            match[1] = p2;
+            match[2] = p3;
+            match[3] = p4;
+
+            ImageBuilder.saveFile(mp, cbxBoard.SelectedIndex, match);
+            updateSettings();
+        }
+
+        private void updateSettings()
+        {
+            config["game"] = mp;
+            config["board"] = cbxBoard.SelectedIndex;
+
+            config["p1p"] = p1.getPlayer();
+            config["p1s"] = p1.getStars().ToString();
+            config["p1c"] = p1.getCoins().ToString();
+
+            config["p2p"] = p2.getPlayer();
+            config["p2s"] = p2.getStars().ToString();
+            config["p2c"] = p2.getCoins().ToString();
+
+            config["p3p"] = p3.getPlayer();
+            config["p3s"] = p3.getStars().ToString();
+            config["p3c"] = p3.getCoins().ToString();
+
+            config["p4p"] = p4.getPlayer();
+            config["p4s"] = p4.getStars().ToString();
+            config["p4c"] = p4.getCoins().ToString();
+
+            config.Save();
         }
     }
 }
